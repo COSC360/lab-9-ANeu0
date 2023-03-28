@@ -2,15 +2,28 @@
 <html>
 <head>
 
-<script type="text/javascript" src="scripts/validate.js"></script>
+    <script type="text/javascript" src="scripts/validate.js"></script>
 
-<!-- Password checking script here!! -->
+    <!-- Password checking script here!! -->
+    <script>
+        function checkPasswordMatch(e) {
+            var password = document.getElementById("password");
+            var confirmPassword = document.getElementById("password-check");
 
+            if (password.value != confirmPassword.value) {
+                makeRed(password);
+                makeRed(confirmPassword);
+                alert("Passwords do not match!");
+                e.preventDefault();
+            }
+           
+        }
+    </script>
 </head>
 
 <body>
 
-<form method="post" action="newuser.php" id="mainForm" >
+<form method="post" action="newuser.php" id="mainForm" onsubmit="return checkPasswordMatch(e);">
   First Name:<br>
   <input type="text" name="firstname" id="firstname" class="required">
   <br>
@@ -32,3 +45,4 @@
   <input type="submit" value="Create New User">
 </form>
 </body>
+</html>
